@@ -136,7 +136,6 @@ Docker deployment
 👨‍💻 Author
 Ajaya Ghimire
 🌐 Portfolio: https://ajayaghimire.net
-🐙 GitHub: https://github.com/ajaya-ghimire
 ⭐ If you like this project, give it a star on GitHub!
 
 
