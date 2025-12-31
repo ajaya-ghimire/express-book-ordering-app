@@ -1,0 +1,60 @@
+<div class="card">
+  <h2>Cart</h2>
+
+  {{#if cartItems.length}}
+    <form method="POST" action="/cart/update">
+      <table>
+        <thead>
+          <tr><th>Book</th><th>Price</th><th>Qty</th><th>Line</th><th></th></tr>
+        </thead>
+        <tbody>
+          {{#each cartItems}}
+            <tr>
+              <td>{{this.book.title}}</td>
+              <td>{{money this.book.price}}</td>
+              <td>
+                <input name="qty[{{this.book._id}}]" value="{{this.qty}}" style="width:80px;" />
+              </td>
+              <td>{{money this.line}}</td>
+              <td>
+                <form method="POST" action="/cart/remove/{{this.book._id}}">
+                  <button class="btn danger" type="submit">Remove</button>
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <div style="margin-top:12px;">
+        <button class="btn secondary" type="submit">Update Cart</button>
+      </div>
+    </form>
+
+    <div style="margin-top:14px;">
+      <p><b>Subtotal:</b> {{money subtotal}}</p>
+      <p><b>Tax:</b> {{money tax}}</p>
+      <p><b>Total:</b> {{money total}}</p>
+    </div>
+
+    <hr style="margin:16px 0; border:0; border-top:1px solid #e5e7eb;" />
+
+    <h3>Checkout</h3>
+    <form method="POST" action="/checkout" class="row">
+      <div>
+        <label>Name</label>
+        <input name="customerName" />
+      </div>
+      <div>
+        <label>Email (optional)</label>
+        <input name="customerEmail" />
+      </div>
+      <div style="grid-column:1 / -1; margin-top:10px;">
+        <button class="btn" type="submit">Place Order</button>
+      </div>
+    </form>
+  {{else}}
+    <p class="muted">Your cart is empty.</p>
+    <a class="btn" href="/books">Browse Books</a>
+  {{/if}}
+</div>

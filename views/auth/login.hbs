@@ -1,0 +1,30 @@
+<div class="card">
+  <h2>Admin Login</h2>
+
+  {{#if errors}}
+    <div class="errors">
+      <ul>
+        {{#each errors}}<li>{{this.msg}}</li>{{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
+  <form method="POST" action="/auth/login">
+    <div class="row">
+      <div>
+        <label>Email</label>
+        <input name="email" value="{{form.email}}" />
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" name="password" />
+      </div>
+    </div>
+    <div style="margin-top:14px;">
+      <button class="btn" type="submit">Login</button>
+    </div>
+    <p class="muted" style="margin-top:12px;">
+      Use ADMIN_EMAIL / ADMIN_PASSWORD from .env (auto-created on first run).
+    </p>
+  </form>
+</div>

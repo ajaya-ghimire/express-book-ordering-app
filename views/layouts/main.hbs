@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Book Ordering Pro</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; background: #f6f7fb; }
+    header { background: #111827; color: white; padding: 14px 18px; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 18px; }
+    a { color: #2563eb; text-decoration: none; }
+    nav a { color: white; margin-right: 14px; }
+    .card { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: left; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn { display: inline-block; padding: 8px 12px; border-radius: 10px; background: #111827; color: white; border: 0; cursor: pointer; }
+    .btn.secondary { background: #374151; }
+    .btn.danger { background: #b91c1c; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 10px; }
+    .errors { background: #fee2e2; padding: 12px; border-radius: 10px; color: #991b1b; margin-bottom: 12px; }
+    .flash { background: #dcfce7; padding: 12px; border-radius: 10px; color: #166534; margin-bottom: 12px; }
+    .muted { color: #6b7280; }
+    img.cover { width: 90px; height: 120px; object-fit: cover; border-radius: 10px; border: 1px solid #e5e7eb; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">{{> nav}}</div>
+  </header>
+  <main class="wrap">
+    {{> flash}}
+    {{{body}}}
+  </main>
+</body>
+</html>

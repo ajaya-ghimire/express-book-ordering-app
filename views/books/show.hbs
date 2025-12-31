@@ -1,0 +1,16 @@
+<div class="card">
+  <h2>{{book.title}}</h2>
+  <p class="muted">by {{book.author}}</p>
+
+  {{#if book.coverUrl}}<img class="cover" src="{{book.coverUrl}}" />{{/if}}
+
+  <p><b>ISBN:</b> {{book.isbn}}</p>
+  <p><b>Price:</b> {{money book.price}}</p>
+  <p><b>Stock:</b> {{book.stock}}</p>
+
+  <form method="POST" action="/books/{{book._id}}/add-to-cart" style="margin-top:12px;">
+    <input name="quantity" value="1" style="width:80px; display:inline;" />
+    <button class="btn" type="submit">Add to Cart</button>
+    <a class="btn secondary" href="/books">Back</a>
+  </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="card">
+  <h2>Books</h2>
+
+  <form method="GET" action="/books" class="row" style="margin: 12px 0;">
+    <div><input name="search" placeholder="Search title/author/ISBN" value="{{search}}" /></div>
+    <div>
+      <button class="btn" type="submit">Search</button>
+      <a class="btn secondary" href="/books">Reset</a>
+    </div>
+  </form>
+
+  <table>
+    <thead>
+      <tr><th></th><th>Title</th><th>Author</th><th>ISBN</th><th>Price</th><th>Stock</th><th></th></tr>
+    </thead>
+    <tbody>
+      {{#each books}}
+        <tr>
+          <td>{{#if coverUrl}}<img class="cover" src="{{coverUrl}}" />{{/if}}</td>
+          <td><a href="/books/{{_id}}">{{title}}</a></td>
+          <td>{{author}}</td>
+          <td>{{isbn}}</td>
+          <td>{{money price}}</td>
+          <td>{{stock}}</td>
+          <td>
+            <form method="POST" action="/books/{{_id}}/add-to-cart">
+              <input name="quantity" value="1" style="width:70px; display:inline;" />
+              <button class="btn" type="submit">Add</button>
+              {{#if ../user}}{{#if (eq ../user.role "admin")}}<a href="/books/{{_id}}/edit">Edit</a>{{/if}}{{/if}}
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

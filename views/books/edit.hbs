@@ -1,0 +1,35 @@
+<div class="card">
+  <h2>Edit Book (Admin)</h2>
+
+  {{#if errors}}
+    <div class="errors"><ul>{{#each errors}}<li>{{this.msg}}</li>{{/each}}</ul></div>
+  {{/if}}
+
+  <form method="POST" action="/books/{{book._id}}?_method=PUT">
+    <div class="row">
+      <div><label>ISBN</label><input name="isbn" value="{{book.isbn}}" /></div>
+      <div><label>Cover URL</label><input name="coverUrl" value="{{book.coverUrl}}" /></div>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <div><label>Title</label><input name="title" value="{{book.title}}" /></div>
+      <div><label>Author</label><input name="author" value="{{book.author}}" /></div>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <div><label>Price</label><input name="price" value="{{book.price}}" /></div>
+      <div><label>Stock</label><input name="stock" value="{{book.stock}}" /></div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <button class="btn" type="submit">Save</button>
+      <a class="btn secondary" href="/books/{{book._id}}">Cancel</a>
+    </div>
+  </form>
+
+  <hr style="margin:16px 0; border:0; border-top:1px solid #e5e7eb;" />
+
+  <form method="POST" action="/books/{{book._id}}?_method=DELETE" onsubmit="return confirm('Delete this book?');">
+    <button class="btn danger" type="submit">Delete</button>
+  </form>
+</div>

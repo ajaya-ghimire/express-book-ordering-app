@@ -1,0 +1,25 @@
+<div class="card">
+  <h2>Order {{order._id}}</h2>
+  <p><b>Date:</b> <span class="muted">{{order.createdAt}}</span></p>
+  <p><b>Customer:</b> {{order.customerName}} {{#if order.customerEmail}}({{order.customerEmail}}){{/if}}</p>
+
+  <table style="margin-top:12px;">
+    <thead><tr><th>Book</th><th>Unit</th><th>Qty</th><th>Line</th></tr></thead>
+    <tbody>
+      {{#each order.items}}
+        <tr>
+          <td>{{this.titleSnapshot}}</td>
+          <td>{{money this.unitPriceSnapshot}}</td>
+          <td>{{this.quantity}}</td>
+          <td>{{money (multiply this.unitPriceSnapshot this.quantity)}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div style="margin-top:12px;">
+    <p><b>Subtotal:</b> {{money order.subtotal}}</p>
+    <p><b>Tax:</b> {{money order.tax}}</p>
+    <p><b>Total:</b> {{money order.total}}</p>
+  </div>
+</div>

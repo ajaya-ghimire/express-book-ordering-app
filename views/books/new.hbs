@@ -1,0 +1,48 @@
+<div class="card">
+  <h2>Add Book (Admin)</h2>
+
+  {{#if errors}}
+    <div class="errors"><ul>{{#each errors}}<li>{{this.msg}}</li>{{/each}}</ul></div>
+  {{/if}}
+
+  <form method="POST" action="/books" id="bookForm">
+    <div class="row">
+      <div>
+        <label>ISBN</label>
+        <input name="isbn" id="isbn" value="{{form.isbn}}" />
+        <button class="btn secondary" type="button" id="lookup" style="margin-top:8px;">Lookup ISBN</button>
+      </div>
+      <div>
+        <label>Cover URL</label>
+        <input name="coverUrl" id="coverUrl" value="{{form.coverUrl}}" />
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <div><label>Title</label><input name="title" id="title" value="{{form.title}}" /></div>
+      <div><label>Author</label><input name="author" value="{{form.author}}" /></div>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <div><label>Price</label><input name="price" value="{{form.price}}" /></div>
+      <div><label>Stock</label><input name="stock" value="{{form.stock}}" /></div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <button class="btn" type="submit">Create</button>
+      <a class="btn secondary" href="/books">Cancel</a>
+    </div>
+  </form>
+
+  <script>
+    document.getElementById("lookup").addEventListener("click", async () => {
+      const isbn = document.getElementById("isbn").value.trim();
+      if (!isbn) return alert("Enter ISBN first.");
+      const r = await fetch(`/api/isbn/${encodeURIComponent(isbn)}`);
+      const j = await r.json();
+      if (!j.ok) return alert(j.error || "Not found");
+      if (j.data.title) document.getElementById("title").value = j.data.title;
+      if (j.data.coverUrl) document.getElementById("coverUrl").value = j.data.coverUrl;
+    });
+  </script>
+</div>

@@ -1,0 +1,41 @@
+<div class="card">
+  <h2>New Order</h2>
+
+  {{#if errors}}
+    <div class="errors">
+      <ul>
+        {{#each errors}}<li>{{this}}</li>{{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
+  <form method="POST" action="/orders">
+    <div class="row">
+      <div>
+        <label>Customer Name</label>
+        <input name="customerName" value="{{form.customerName}}" />
+      </div>
+      <div>
+        <label>Book</label>
+        <select name="bookId">
+          <option value="">-- Select --</option>
+          {{#each books}}
+            <option value="{{id}}" {{#if (eq ../form.bookId id)}}selected{{/if}}>
+              {{title}} (stock: {{stock}})
+            </option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;">
+      <label>Quantity</label>
+      <input name="quantity" value="{{form.quantity}}" />
+    </div>
+
+    <div style="margin-top:14px;">
+      <button class="btn" type="submit">Place Order</button>
+      <a class="btn secondary" href="/orders">Cancel</a>
+    </div>
+  </form>
+</div>
